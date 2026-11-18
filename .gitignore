@@ -1,0 +1,7 @@
+# 待确定交付文件
+pending/**
+!pending/.gitkeep
+
+# 参考文献
+reference/**
+!reference/.gitkeep
