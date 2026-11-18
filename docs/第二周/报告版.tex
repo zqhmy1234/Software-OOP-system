@@ -1,0 +1,209 @@
+% !TEX program = xelatex
+% 参考 docs/template/shu-report.tex 的版式；仅保留第二周所需的三页内容，不含封面与目录。
+\documentclass[11pt,a4paper,twoside,fontset=fandol]{ctexart}
+\usepackage[left=23mm,right=23mm,top=20mm,bottom=23mm,includehead,headheight=14pt,headsep=6mm,footskip=12mm]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+\usepackage{amsmath,amssymb,booktabs,array,caption,enumitem,fancyhdr,graphicx,hyperref,microtype,titlesec,xcolor,float,tabularx,ragged2e}
+\usepackage[most]{tcolorbox}
+\definecolor{QiushiBlue}{RGB}{0,63,136}
+\colorlet{ReportBlue}{QiushiBlue}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,pdftitle={RSM 第二周交付：产品愿景、SCAMPER 与 MVP 定义}}
+\titleformat{\section}{\bfseries\Large\color{black}}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\bfseries\large\color{black}}{\thesubsection}{0.65em}{}
+\titlespacing*{\section}{0pt}{2.1ex plus .5ex}{.8ex}
+\titlespacing*{\subsection}{0pt}{1.7ex plus .4ex}{.6ex}
+\captionsetup{font=small,labelfont=bf,skip=5pt}
+\setlist{itemsep=2pt,topsep=4pt}
+\linespread{1.29}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{3pt}
+\setlength{\emergencystretch}{2em}
+\pagestyle{fancy}\fancyhf{}
+\fancyfoot[C]{\footnotesize\color{black}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\footnotesize\color{black}\thepage}\renewcommand{\headrulewidth}{0pt}}
+\begin{document}
+\raggedbottom
+\thispagestyle{plain}
+
+% ===== 标题区：不设独立封面，仅作为正文首页标题 =====
+\noindent{\heiti\Large\color{black}上海大学}\hfill{\sffamily\small\color{black}面向对象软件工程 · 课程设计}\par
+\vspace{4pt}\noindent\textcolor{ReportBlue}{\rule{\linewidth}{0.8pt}}\par
+\vspace{10pt}
+{\centering\heiti\bfseries\fontsize{18}{24}\selectfont 第二周交付：产品愿景、SCAMPER 与 MVP 定义\par}
+\vspace{5pt}
+{\centering\large 矿山安全风险预控与隐患排查系统（RSM）\par}
+\vspace{7pt}
+\noindent\textcolor{ReportBlue}{\rule{\linewidth}{0.4pt}}\par
+\vspace{6pt}
+
+% ===== 第 1 页：产品愿景 =====
+\section{产品愿景（Moore 模板）}
+
+本页用 Moore 模板的六个空位，明确 RSM 的目标客户、需求、产品、核心价值、现有替代与差异化。六行即完整模板，不额外扩写口号。
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{29mm}>{\raggedright\arraybackslash}p{19mm}X@{}}
+\toprule
+\textbf{模板} & \textbf{含义} & \textbf{填写内容} \\
+\midrule
+\textsf{\textbf{FOR}} & 目标客户 & 矿山企业的一线安全员、现场员工与安全管理人员 \\
+\textsf{\textbf{WHO}} & 需求 / 机会 & 需要把“风险分级管控 + 隐患排查治理”落到每个班次，却仍靠纸质台账、电话和微信群，巡查难留痕、隐患难闭环 \\
+\textsf{\textbf{THE}} & 产品名称 & 矿山安全风险预控与隐患排查系统（RSM） \\
+\textsf{\textbf{THAT}} & 核心价值 & 用作业计划自动生成巡查清单，手机扫码逐项拍照，隐患从上报、指派、整改到复查全程可追溯 \\
+\textsf{\textbf{UNLIKE}} & 现有替代 & 通用 OA、纸质检查表，或只做单一隐患上报的工具 \\
+\textsf{\textbf{OUR PRODUCT}} & 差异化 & 以“作业—风险—巡查—隐患”一条主线串起双重预防机制，现场只带一部手机，管理层只看一张今日看板 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{4pt}
+\noindent\textbf{设计依据：}双重预防机制；风险分级管控；隐患排查治理；作业—巡查—隐患闭环。
+
+\vspace{2pt}
+\noindent 这份愿景同时约束后续两页：SCAMPER 从这六个空位寻找差异化，MVP 只保留能验证核心价值的最小闭环。
+
+\newpage
+
+% ===== 第 2 页：SCAMPER 七问 =====
+\section{SCAMPER 七问工作单}
+
+围绕 RSM 的当前形态，从七个角度产生 15 条想法，并经小组投票收敛为两条差异化方向。
+
+\begin{table}[H]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{14mm}>{\raggedright\arraybackslash}p{22mm}X@{}}
+\toprule
+\textbf{字母} & \textbf{七问} & \textbf{想法} \\
+\midrule
+\textsf{\textbf{S}} 替代 & 有什么可以替代？ & \textbf{S1} 小程序 + 巡查点二维码替代纸质巡查卡，扫码即出风险与检查项。\par
+\textbf{S2} 以“作业计划”作为巡查任务唯一入口，替代手工排班和电话通知。 \\
+\textsf{\textbf{C}} 组合 & 可以和什么组合？ & \textbf{C1} 风险库、待查项、巡查清单、隐患台账共用同一风险数据链。\par
+\textbf{C2} 未闭环隐患自动进入下一班交接清单，整改与交接合并。 \\
+\textsf{\textbf{A}} 借鉴 & 可以借鉴什么？ & \textbf{A1} 借鉴工单状态机：待审核 → 待指派 → 整改中 → 待复查 → 已闭环，超时标红。\par
+\textbf{A2} 借鉴健康打卡：选清单 → 拍照 → 提交，单个巡检项不超过 3 步。 \\
+\textsf{\textbf{M}} 放大 & 哪些可以放大？ & \textbf{M1} 每项必拍，照片带时间、地点、巡检人水印，替代纸质签字。\par
+\textbf{M2} 只做今日未完成、超期未整改、A 级作业三个数字。 \\
+\textsf{\textbf{P}} 他用 & 还能用来做什么？ & \textbf{P1} 风险库复用到班前会，班组长扫码生成 1 分钟安全交底。\par
+\textbf{P2} 巡查与隐患数据复用到培训，按高频隐患生成下月主题。 \\
+\textsf{\textbf{E}} 消除 & 可以去掉什么？ & \textbf{E1} MVP 不做菜单/按钮级 RBAC、部门岗位、字典、日志、定时任务。\par
+\textbf{E2} 不做大屏、事故地图、报表导出、传感器/定位/监管平台对接。 \\
+\textsf{\textbf{R}} 重排/反转 & 顺序或方向可以反吗？ & \textbf{R1} B/C/D 级作业自动通过，仅 A 级进入审批。\par
+\textbf{R2} 不只等安全员巡查，先开放全员随手拍，再统一审核。\par
+\textbf{R3} 风险库不必一次建全，作业填报时选择并强制关联，在使用中补齐。 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{投票：两条差异化方向}
+
+投票口径：差异化程度 $\times$ 两周内可被现场验证。方向 A 与方向 B 不是两个产品，而是同一闭环的两端：A 保证“有计划地查”，B 保证“没计划也能报”。
+
+\begin{table}[H]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{31mm}>{\raggedright\arraybackslash}p{27mm}X@{}}
+\toprule
+\textbf{方向} & \textbf{组合想法} & \textbf{主张与入选理由} \\
+\midrule
+\textbf{入选 A：作业驱动的巡查闭环} & S2 + C1 + R1 + M1 & 巡查由作业计划触发，风险、清单、照片、隐患共用一条链。命中风险与作业脱节、巡查难留痕的根因；两周可验证。 \\
+\textbf{入选 B：零门槛全员上报} & R2 + A1 + S1 + A2 & 隐患上报压缩成拍照 + 选位置 + 提交，让现场员工愿意报。解决数据来源与参与度；与 A 共用隐患工单，边际成本低。 \\
+\textbf{备选：管理层实时看板} & M2 & 有价值，但依赖 A/B 先产生足够数据，放到二期。 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{写进 Backlog}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{11mm}>{\raggedright\arraybackslash}p{7mm}X X>{\centering\arraybackslash}p{7mm}@{}}
+\toprule
+\textbf{ID} & \textbf{方向} & \textbf{用户故事} & \textbf{验收标准} & \textbf{MVP} \\
+\midrule
+BL-01 & A & 作为作业负责人，我要在新建作业时从风险库关联风险，让作业前先确认风险。 & 未关联风险不能提交；A 级必须审批；B/C/D 自动通过；记录审批人、意见、时间。 & 是 \\
+BL-02 & A & 作为安全员，我要看到由当日作业自动生成的巡查清单，按点巡查。 & 清单含作业、巡查点、检查项；状态为未完成/已完成/已过期；当日未完成标黄。 & 是 \\
+BL-03 & A & 作为巡查人，我要扫码后逐项拍照提交，弱网也不丢数据。 & 每项必拍；照片带时间/地点/人水印；离线暂存、恢复后同步；单点巡查 $\le 3$ 分钟。 & 是 \\
+BL-04 & A+B & 作为隐患主管，我要把隐患指派给整改人并跟踪到复查闭环。 & 待审核 → 待指派 → 整改中 → 待复查 → 已闭环；超期标红；记录处理人、时间、意见。 & 是 \\
+BL-05 & B & 作为现场员工，我要用随手拍上报隐患，不需要先填长表单。 & 拍照 + 定位 + 一句话描述即可提交；进入统一审核池；可定性为隐患或非隐患。 & 是 \\
+BL-06 & A+B & 作为矿长/安全主管，我要在首页看到三个数字，判断今天是否安全。 & 今日巡查完成率、超期未整改隐患数、A 级作业数；数据延迟 $\le 1$ 分钟。 & 是 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+% ===== 第 3 页：MVP 定义 =====
+\section{MVP 定义}
+
+用两周证明：现场愿意用手机完成“作业驱动的拍照巡查 + 隐患闭环”，并且这能替代纸质台账。试点范围为 1 个矿区、2 个班组、20 名现场人员、30 个巡查点、2 周。
+
+\noindent\textbf{（1）核心动作。}现场安全员打开小程序，按当日作业生成的清单扫码巡查、逐项拍照；发现隐患就地上报，由隐患主管指派、整改人反馈、复查人确认，形成一条可追溯的闭环。
+
+\noindent\textbf{（2）砍掉什么。}砍掉菜单/按钮级 RBAC、部门岗位/字典/日志/定时任务、Excel 批量导入导出、统计报表与大屏、事故地图、短信/推送、传感器与政府平台对接；只保留 4 个固定角色（现场员工、安全员、隐患主管、管理员）、1 个矿区、基础风险库与巡查点、作业→清单→隐患闭环、图片上传和 3 个数字的今日看板。
+
+\noindent\textbf{（3）验证哪个阶段。}在 1 个矿区、2 个班组、20 名现场人员、30 个巡查点做 2 周现场试点，验证“拍照巡查能否替代纸质台账、隐患能否在 3 天内闭环”，而不是验证高并发、多租户或完整权限体系。
+
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\small\textbf{保留（MVP 必须）}
+\begin{itemize}[leftmargin=*,nosep,itemsep=1.5pt,topsep=2pt]
+  \item 4 个固定角色：现场员工、安全员、隐患主管、管理员
+  \item 1 个矿区：人员、区域、巡查点、A/B/C/D 风险库
+  \item 作业计划：手工新建、关联风险、A 级审批（隐患主管）
+  \item 由作业生成待查项与当日巡查清单
+  \item 扫码巡查、逐项拍照、水印、弱网暂存
+  \item 隐患上报（巡查 + 随手拍）→ 审核 → 指派 → 整改 → 复查
+  \item 图片上传（OSS）、微信登录 + 员工账号绑定
+  \item 今日看板 3 个数字、审计字段
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\small\textbf{砍掉（本期不做）}
+\begin{itemize}[leftmargin=*,nosep,itemsep=1.5pt,topsep=2pt]
+  \item 菜单/按钮级 RBAC、部门/岗位/字典/操作日志/定时任务/代码生成
+  \item 多矿区、多租户、组织架构维护
+  \item Excel 批量导入导出、复杂排班、跨班组调班
+  \item 轨迹回放、NFC/蓝牙巡检、传感器、人员定位、监管平台对接
+  \item 隐患知识库、自动定级、智能推荐整改措施
+  \item 文件管理、多格式附件、视频
+  \item 实时大屏、事故地图、统计报表、报表导出
+  \item 短信验证码、密码体系、SSO、多端审批、消息推送
+\end{itemize}
+\end{minipage}
+
+\vspace{6pt}
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X>{\centering\arraybackslash}p{20mm}>{\raggedright\arraybackslash}X>{\centering\arraybackslash}p{20mm}@{}}
+\toprule
+\textbf{验证指标} & \textbf{通过线} & \textbf{验证指标} & \textbf{通过线} \\
+\midrule
+巡查完成率 & $\ge 80\%$ & 平均闭环时长 & $\le 3$ 天 \\
+隐患拍照上报率 & $\ge 70\%$ & 单个巡查点耗时 & $\le 3$ 分钟 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{tcolorbox}[colback=black!2,colframe=black!35,boxrule=0.4pt,arc=0pt,left=6pt,right=6pt,top=4pt,bottom=4pt]
+\small
+\textbf{通过} $\rightarrow$ 扩到 5 个班组，进入二期（统计、大屏、多矿区）。\quad
+\textbf{未通过} $\rightarrow$ 只改交互、离线同步、提醒，不扩功能。\quad
+\textbf{红线} $\rightarrow$ 连续两周巡查完成率低于 50\%，暂停开发，跟班观察真实工作流。
+\end{tcolorbox}
+
+\end{document}

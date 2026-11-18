@@ -5,3 +5,9 @@ pending/**
 # 参考文献
 reference/**
 !reference/.gitkeep
+
+# 生成文档参考 Latex 格式
+docs/template/**
+
+# 辅助文件
+CLAUDE.md
